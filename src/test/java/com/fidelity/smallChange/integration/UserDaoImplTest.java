@@ -27,57 +27,8 @@ public class UserDaoImplTest {
 	
 	@Test
 	void testGetAllUsers() {
-		List<Profile> users = dao.getAllUsers();
+		List<User> users = dao.getAllUsers();
 		assertTrue(users.size() > 0);
 	}
-	
-	@Test
-	void testSignUpNewUser() {
-		int count = dao.signupUser(new Profile("Elend", "Venture", LocalDate.now(), "Elend", "elend", "elend@smallchange.com", "+91-1234567890", 5));
-		assertEquals(count, 1);
-	}
-	
-	@Test
-	void testSignUpNewUserWithExistingUsername() {
-		assertThrows(DuplicateKeyException.class, () -> {
-			int count = dao.signupUser(new Profile("Elend", "Venture", LocalDate.now(), "Aryan", "elend", "elend@smallchange.com", "+91-1234567890", 5));
-	    });
-	}
-	
-	@Test
-	void testSettingUserPreferences() {
-		dao.setUserPreferences(new UserPreferences("Aryan", "Trading", 3, IncomeCategory.MIDDLE, 7));
-	}
-	
-	@Test
-	void testSettingUserPreferencesForInvalidUser() {
-		assertThrows(DataIntegrityViolationException.class, () -> {
-			dao.setUserPreferences(new UserPreferences("a", "Trading", 3, IncomeCategory.MIDDLE, 7));
-	    });
-	}
-	
-	@Test
-	void testLoginUserWithCorrectCredentials() {
-		int count = dao.loginUser(new User("Aryan", "aryan"));
-		assertEquals(count, 1);
-	}
-	
-	@Test
-	void testLoginUserWithIncorrectCredentials() {
-		int count = dao.loginUser(new User("Aryan", "aryan1"));
-		assertEquals(count, 0);
-	}
-	
-	@Test
-	void testDeletingNonExistentUser() {
-		int count = dao.deleteUser("ARY");
-		assertEquals(count, 0);
-	}
-	
-	@Test
-	void testDeletingValidUser() {
-		dao.signupUser(new Profile("Elend", "Venture", LocalDate.now(), "Elend", "elend", "elend@smallchange.com", "+91-1234567890", 5));
-		int count = dao.deleteUser("Elend");
-		assertEquals(count, 1);
-	}
+
 }

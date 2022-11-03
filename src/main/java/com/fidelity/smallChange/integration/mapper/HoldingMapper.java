@@ -15,5 +15,4 @@ public interface HoldingMapper {
 	Holding getHoldingBySecurityId(@Param("acctnum") String acctnum, 
 			@Param("s_id") int s_id);
 	void addHolding(@Param("acctnum") String acctnum, @Param("holding") Holding holding);
-	
 }

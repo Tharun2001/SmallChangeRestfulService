@@ -1,6 +1,6 @@
 package com.fidelity.smallChange.business;
 
-public class UserPreferences {
+public class Preference {
 	
 	
 	private String username;
@@ -9,7 +9,7 @@ public class UserPreferences {
 	private IncomeCategory incomeCategory;
 	private int lengthOfInvestment;
 	
-	public UserPreferences(String username, String purpose, int risk, IncomeCategory incomeCategory, int loi) {
+	public Preference(String username, String purpose, int risk, IncomeCategory incomeCategory, int loi) {
 		this.username = username;
 		this.purpose = purpose;
 		this.risk = risk;
