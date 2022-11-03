@@ -16,5 +16,6 @@ public interface TradeMapper {
 			@Param("trade") Trade trade,
 			@Param("s_id") int s_id,
 			@Param("timestamp") Timestamp timestamp);
-	
+	List<Trade> getTradesFilterbyAmount(@Param("acctnum") String acctNum, @Param("startAmt") double startAmt, @Param("endAmt") double endAmt);
+	List<Trade> getTradesFilterbySymbol(@Param("acctnum") String acctNum, @Param("symbol") String symbol);
 }

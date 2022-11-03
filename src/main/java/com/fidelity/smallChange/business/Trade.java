@@ -16,6 +16,14 @@ public class Trade {
 		super();
 	}
 
+	public Trade(String trade_type, LocalDateTime trade_time, double quantity, double amount) {
+		super();
+		this.trade_type = trade_type;
+		this.trade_time = trade_time;
+		this.quantity = quantity;
+		this.amount = amount;
+	}
+
 	public Trade(String trade_type, Security security, LocalDateTime trade_time, double quantity, double amount) {
 		super();
 		this.trade_type = trade_type;

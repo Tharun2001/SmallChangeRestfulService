@@ -28,6 +28,24 @@
         where t.account_number = #{acctnum}
 	</select>
 	
+	<select id="getTradesFilterbyAmount" parameterType="Map" resultMap="TradeMap">
+		select t.TRADE_TYPE, t.TRADE_TIME, t.AMOUNT, t.QUANTITY, 
+				s.S_ID, s.S_NAME, s.S_CODE, s.S_LTP, s.S_ASSET_CLASS
+		from SC_TRADE t 
+		left join SC_STOCK_SECURITIES s
+		on t.s_id = s.s_id
+        where t.account_number = #{acctnum} and t.AMOUNT &lt;= #{endAmt} and t.AMOUNT &gt;= #{startAmt}
+	</select>
+	
+	<select id="getTradesFilterbySymbol" parameterType="Map" resultMap="TradeMap">
+		select t.TRADE_TYPE, t.TRADE_TIME, t.AMOUNT, t.QUANTITY, 
+				s.S_ID, s.S_NAME, s.S_CODE, s.S_LTP, s.S_ASSET_CLASS
+		from SC_TRADE t 
+		left join SC_STOCK_SECURITIES s
+		on t.s_id = s.s_id
+        where t.account_number = #{acctnum} and s.S_CODE = #{symbol}
+	</select>
+	
 	<insert id="transactSecurity" parameterType="Map">
 		INSERT INTO SC_TRADE(TRADE_ID, ACCOUNT_NUMBER, TRADE_TYPE, S_ID, 
 		QUANTITY, AMOUNT, TRADE_TIME)
