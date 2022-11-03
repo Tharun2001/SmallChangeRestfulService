@@ -27,11 +27,21 @@ class TradeDaoImplTest {
 	}
 	
 	@Test
-	void test_buySecurity() {
+	void test_transactSecurity_buy() {
 		 Security newSecurity = new Security(12, "Spacex", "TSLA",733.8,"Main Index");
 		 Trade trade = new Trade("B", newSecurity,  LocalDateTime.now(),10, 2000);
-		 dao.buySecurity(2, "ABCE123", trade);
+		 dao.transactSecurity(5, "ABCE123", trade, newSecurity.getStockId());
 		List<Trade> trades = dao.getAllTrades("ABC123");
 		assertTrue(trades.size() > 1);
 	}
+	
+	@Test
+	void test_transactSecurity_Sell() {
+		 Security newSecurity = new Security(12, "Spacex", "TSLA",733.8,"Main Index");
+		 Trade trade = new Trade("S", newSecurity,  LocalDateTime.now(),10, 2000);
+		 dao.transactSecurity(5, "ABCE123", trade, newSecurity.getStockId());
+		List<Trade> trades = dao.getAllTrades("ABC123");
+		assertTrue(trades.size() > 1);
+	}
+	
 }

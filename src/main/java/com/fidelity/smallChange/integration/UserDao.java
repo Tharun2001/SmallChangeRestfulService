@@ -2,15 +2,18 @@ package com.fidelity.smallChange.integration;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.fidelity.smallChange.business.Preference;
 import com.fidelity.smallChange.business.Profile;
 import com.fidelity.smallChange.business.User;
-import com.fidelity.smallChange.business.UserPreferences;
+
 
 
 public interface UserDao {
-	List<Profile> getAllUsers();
-	int signupUser(Profile p);
+	List<User> getAllUsers();
+	int signupUser(User p);
+	int loginUser(@Param("username") String username, @Param("password") String password);
 	int deleteUser(String username);
-	int loginUser(User user);
-	int setUserPreferences(UserPreferences up);
+	int setUserPreferences(Preference up);
 }

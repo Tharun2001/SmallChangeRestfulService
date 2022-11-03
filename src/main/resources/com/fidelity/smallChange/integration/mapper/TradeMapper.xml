@@ -28,10 +28,10 @@
         where t.account_number = #{acctnum}
 	</select>
 	
-	<insert id="buySecurity" parameterType="Map">
+	<insert id="transactSecurity" parameterType="Map">
 		INSERT INTO SC_TRADE(TRADE_ID, ACCOUNT_NUMBER, TRADE_TYPE, S_ID, 
 		QUANTITY, AMOUNT, TRADE_TIME)
-		VALUES(#{t_id}, #{acctnum}, #{trade.trade_type}, #{trade.security.stockId}, 
-		#{trade.quantity}, #{trade.amount}, #{trade.trade_time})
+		VALUES(#{t_id}, #{acctnum}, #{trade.trade_type}, #{s_id}, 
+		#{trade.quantity}, #{trade.amount}, #{timestamp})
 	</insert>
 </mapper>
