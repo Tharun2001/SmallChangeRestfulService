@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.smallChange.integration.mapper.UserDaoMapper">
+	 
+	<select id="getAllUsers" resultType="Profile">
+		select 
+			scu.first_name as firstName, 
+			scu.last_name as lastName, 
+			scu.date_of_birth as dob, 
+			scu.email as email, 
+			scu.phone_number as phone, 
+			scu.username as username,
+			scu.user_password as password,
+			scp.risk_tolerance as risk
+		from sc_users scu
+		left join sc_preferences scp
+		on scp.username = scu.username
+	</select>
+	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM sc_users 
+		WHERE username = #{username}
+	</delete>
+	
+	<select id="loginUser" resultType="int" parameterType="User">
+		select COUNT(username) from sc_users 
+		WHERE 
+		username = #{username} 
+		AND 
+		user_password = #{password}
+	</select>
+	
+	<insert id="signUpUser" parameterType="Profile">
+		INSERT INTO sc_users (first_name, last_name, date_of_birth, email, phone_number, username, user_password)
+		VALUES (#{firstName}, #{lastName}, #{dob}, #{email}, #{phone}, #{username}, #{password})
+	</insert>
+	
+	<insert id="setUserPreferences" parameterType="UserPreferences">
+		INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment)
+		VALUES (#{username}, #{purpose}, #{risk}, #{incomeCategory}, #{lengthOfInvestment})
+	</insert>
+	
+</mapper>
