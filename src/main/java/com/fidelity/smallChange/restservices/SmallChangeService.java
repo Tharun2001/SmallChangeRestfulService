@@ -16,6 +16,7 @@ import com.fidelity.smallChange.business.Profile;
 import com.fidelity.smallChange.business.Security;
 import com.fidelity.smallChange.business.Trade;
 import com.fidelity.smallChange.business.User;
+import com.fidelity.smallChange.dto.AccountDto;
 import com.fidelity.smallChange.dto.LoginDto;
 import com.fidelity.smallChange.dto.UsernameDto;
 import com.fidelity.smallChange.integration.AccountDao;
@@ -60,14 +61,14 @@ public class SmallChangeService {
 	}
 
 	@GetMapping("/bankAccounts")
-	public ResponseEntity<List<BankAccount>> queryForAllBankAccount() {
-		List<BankAccount> bankAccounts = bankDao.getBankAccounts("ABC123");
+	public ResponseEntity<List<BankAccount>> queryForAllBankAccount(@RequestBody AccountDto  account) {
+		List<BankAccount> bankAccounts = bankDao.getBankAccounts(account.getAcctNum());
 		return ResponseEntity.ok(bankAccounts);
 	}
 		
 	@GetMapping("/trades")
-	public ResponseEntity<List<Trade>> queryAlltrades() {
-		List<Trade> trades = tradeDao.getAllTrades("ABC123");
+	public ResponseEntity<List<Trade>> queryAlltrades(@RequestBody AccountDto  account) {
+		List<Trade> trades = tradeDao.getAllTrades(account.getAcctNum());
 		return ResponseEntity.ok(trades);
 	}
 	
