@@ -1,11 +1,16 @@
 package com.fidelity.smallChange.restservices;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.ibatis.javassist.Loader.Simple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +23,7 @@ import com.fidelity.smallChange.business.Trade;
 import com.fidelity.smallChange.business.User;
 import com.fidelity.smallChange.dto.AccountDto;
 import com.fidelity.smallChange.dto.LoginDto;
+import com.fidelity.smallChange.dto.UserDto;
 import com.fidelity.smallChange.dto.UsernameDto;
 import com.fidelity.smallChange.integration.AccountDao;
 import com.fidelity.smallChange.integration.BankAccountDao;
@@ -49,8 +55,20 @@ public class SmallChangeService {
 	
 	@GetMapping( value ="/login",
 			consumes = {MediaType.APPLICATION_JSON_VALUE })
-	public int userLogin(@RequestBody LoginDto loginDto) {
-		int value = userDao.loginUser(loginDto.getUsername(),loginDto.getPassword());
+	public ResponseEntity<User> userLogin(@RequestBody LoginDto loginDto) {
+		User user = userDao.loginUser(loginDto.getUsername(),loginDto.getPassword());
+		return ResponseEntity.ok(user);
+	}
+	
+	@PostMapping( value ="/register",
+			consumes = {MediaType.APPLICATION_JSON_VALUE })
+	public int registerUser(@RequestBody UserDto user) {		
+		User user1 = new User(user.getFirstName(), user.getLastName(), 
+				LocalDate.now(), user.getEmail(), user.getPhone(),
+				user.getUsername(),
+				user.getPassword());
+		
+		int value = userDao.signupUser(user1);
 		return value;
 	}
 	
@@ -71,7 +89,7 @@ public class SmallChangeService {
 		List<Trade> trades = tradeDao.getAllTrades(account.getAcctNum());
 		return ResponseEntity.ok(trades);
 	}
-	
+
 	@GetMapping("/securities")
 	public ResponseEntity<List<Security>> queryAllUsers() {
 		List<Security> securities = securityDao.getSecurities();

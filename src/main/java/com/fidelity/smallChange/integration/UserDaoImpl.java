@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int loginUser(String username, String password) {
+	public User loginUser(String username, String password) {
 		//logger.debug("enter loginUser");
 		return userMapper.loginUser(username, password);
 	}

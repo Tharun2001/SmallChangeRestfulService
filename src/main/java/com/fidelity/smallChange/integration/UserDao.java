@@ -12,5 +12,5 @@ import com.fidelity.smallChange.business.User;
 public interface UserDao {
 	List<User> getAllUsers();
 	int signupUser(User p);
-	int loginUser(@Param("username") String username, @Param("password") String password);
+	User loginUser(@Param("username") String username, @Param("password") String password);
 }

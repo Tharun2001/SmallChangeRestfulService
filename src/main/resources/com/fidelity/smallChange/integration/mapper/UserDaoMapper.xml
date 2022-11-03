@@ -13,8 +13,12 @@
 		from sc_users
 	</select>
 	
-	<select id="loginUser" resultType="int" parameterType="Map">
-		select COUNT(username) from sc_users 
+	<select id="loginUser" resultType="User" parameterType="Map">
+		select first_name as firstName, last_name as lastName, date_of_birth as dob, 
+			email as email, 
+			phone_number as phone, 
+			username as username,
+			user_password as password from sc_users 
 		WHERE 
 		username = #{username} 
 		AND 

@@ -3,10 +3,14 @@ package com.fidelity.smallChange.business;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class User {
 	private String firstName;
 	private String lastName;
+
 	private LocalDate dob;
+	
 	private String email;
 	private String phone;
 	private String username;

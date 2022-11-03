@@ -11,7 +11,7 @@ import com.fidelity.smallChange.business.Preference;
 @Mapper
 public interface UserDaoMapper {
 	List<User> getAllUsers();
-	int loginUser(@Param("username") String username, @Param("password") String password);
+	User loginUser(@Param("username") String username, @Param("password") String password);
 	int signUpUser(User p);
 	int deleteUser(String username);
 	int setUserPreferences(Preference up);

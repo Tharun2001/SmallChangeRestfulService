@@ -34,16 +34,15 @@ public class UserDaoImplTest {
 
 	@Test
 	void testloginUser() {
-		int val = dao.loginUser("Tharun", "tharun");
-		assertTrue(val ==1 );
+		User val = dao.loginUser("Tharun", "tharun");
+		assertTrue(val != null); 
 	}
 	
 	@Test
 	void testSignUpUser() {
 		User user1 = new User("Elend", "Venture", LocalDate.now(), "elend@smallchange.com", "+91-1234567890", "Elend", "elend");
 		dao.signupUser(user1);
-		int val = dao.loginUser("Elend", "elend");
-		assertTrue(val ==1 ); 
-		assertTrue(val ==1 );
+		User val = dao.loginUser("Elend", "elend");
+		assertTrue(val != null); 
 	}
 }
