@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.fidelity.smallChange.business.Holding;
 import com.fidelity.smallChange.integration.mapper.HoldingMapper;
 
-
-
 @Repository
-public class HoldingDaoImpl implements HoldingDao{
-	
+public class HoldingDaoImpl implements HoldingDao {
+
 	@Autowired
 	private HoldingMapper mapper;
-	
+
 	@Override
 	public List<Holding> getAllHoldings(String acctnum) {
 		return mapper.getAllHoldings(acctnum);
@@ -28,8 +26,17 @@ public class HoldingDaoImpl implements HoldingDao{
 
 	@Override
 	public void addHolding(String acctnum, Holding holding) {
-		// TODO Auto-generated method stub
 		mapper.addHolding(acctnum, holding);
+	}
+
+	@Override
+	public void updateHolding(String acctnum, Holding holding) {
+		mapper.updateHolding(acctnum, holding);
+	}
+
+	@Override
+	public void deleteHolding(String acctnum, Holding holding) {
+		mapper.deleteHolding(acctnum, holding);
 	}
 
 }

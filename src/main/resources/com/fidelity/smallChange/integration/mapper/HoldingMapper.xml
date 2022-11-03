@@ -41,5 +41,15 @@
 	<delete id="deleteHolding">
 		delete from SC_HOLDING where s_id = #{s_id}
 	</delete>
-
+	
+	<update id="updateHolding" parameterType="Map">
+		UPDATE SC_HOLDING
+			SET
+				HOLDING_ID = #{holding.holdingId},
+				QTY = #{holding.holdingQuantity},
+				INVESTED_AMOUNT = #{holding.investedAmount}
+			WHERE				
+				ACCOUNT_NUMBER = #{acctnum} AND 
+				S_ID = #{holding.sId}
+	</update>
 </mapper>
