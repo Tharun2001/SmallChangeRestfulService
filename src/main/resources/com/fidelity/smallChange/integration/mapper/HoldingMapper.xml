@@ -38,8 +38,9 @@
 		#{holding.holdingQuantity}, #{holding.investedAmount}, #{acctnum})
 	</insert>
 	
-	<delete id="deleteHolding">
-		delete from SC_HOLDING where s_id = #{s_id}
+	<delete id="deleteHolding" parameterType="Map">
+		DELETE FROM SC_HOLDING 
+		WHERE ACCOUNT_NUMBER = #{acctnum} AND s_id = #{holding.sId}
 	</delete>
 	
 	<update id="updateHolding" parameterType="Map">

@@ -2,6 +2,7 @@ package com.fidelity.smallChange.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -47,17 +48,29 @@ class HoldingDaoImplTest {
 
 	@Test
 	void updateHolding() {
-		Security security = new Security(2, "Tesla Inc", "TSLA", 733.8, "Main Index");
-		Holding holding = dao.getHoldingBySecurityId("ABC123", 1);// new Holding(2,1,security,20, 2000);
+		Holding holding = dao.getHoldingBySecurityId("ABC123", 1);
 		assertEquals(holding.getInvestedAmount(), 1000);
 
 		holding.setInvestedAmount(2000);
 		holding.setHoldingQuantity(20);
 
 		dao.updateHolding("ABC123", holding);
-//
-//		Holding holding2 = dao.getHoldingBySecurityId("ABC123", 1);
-//
-//		assertEquals(holding2, holding);
+
+		Holding holding2 = dao.getHoldingBySecurityId("ABC123", 1);
+
+		assertEquals(holding2, holding);
 	}
+
+	@Test
+	void deleteHolding() {
+		Holding holding = dao.getHoldingBySecurityId("ABC123", 1);
+		assertEquals(holding.getInvestedAmount(), 1000);
+
+		dao.deleteHolding("ABC123", holding);
+
+		Holding holding2 = dao.getHoldingBySecurityId("ABC123", 1);
+
+		assertNull(holding2);
+	}
+
 }
