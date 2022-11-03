@@ -22,11 +22,8 @@
 	</select>
 	
 	<delete id="deleteUser" parameterType="String">
-		DELETE FROM sc_users 
-		WHERE username = #{username}
+		DELETE FROM sc_users WHERE username = #{username}
 	</delete>
-	
-
 	
 	<insert id="signUpUser" parameterType="User">
 		INSERT INTO sc_users (first_name, last_name, date_of_birth, email, phone_number, username, user_password)
