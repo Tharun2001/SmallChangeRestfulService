@@ -4,14 +4,30 @@
 
 <mapper namespace="com.fidelity.smallChange.integration.mapper.AccountMapper">
 	<select id="getAccount" resultType="Account">
-		select USERNAME as username, ACCTNUM as acct_num, ACCTTYPE as type 
+		select username, clientId, funds 
 		from SC_ACCOUNT
 		where USERNAME = #{username}
 	</select>
 	
-	<select id="getAllAccount" resultType="Account">
-		select USERNAME as username, ACCTNUM as acct_num, ACCTTYPE as type 
-		from SC_ACCOUNT
-		where USERNAME = #{username}
+	<insert id="createAccount" parameterType="Account">
+		INSERT INTO sc_account(username, clientId, funds) 
+		VALUES (#{username}, #{clientId}, #{funds})
+	</insert>
+	
+	<select id="checkIfAccountExists" parameterType="String" resultType="int">
+		select count(clientId) from SC_ACCOUNT 
+		where clientId = #{value}
 	</select>
+	
+	<select id="getAccountFunds" resultType="BigDecimal">
+		select funds 
+		from SC_ACCOUNT
+		where clientId = #{clientId}
+	</select>
+	
+	<update id="updateFunds" parameterType="Map">
+		update SC_ACCOUNT
+		set funds = #{funds}
+		where clientId = #{clientId}
+	</update>
 </mapper>

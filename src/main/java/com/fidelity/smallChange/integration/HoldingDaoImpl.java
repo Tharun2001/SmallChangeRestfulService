@@ -15,28 +15,28 @@ public class HoldingDaoImpl implements HoldingDao {
 	private HoldingMapper mapper;
 
 	@Override
-	public List<Holding> getAllHoldings(String acctnum) {
-		return mapper.getAllHoldings(acctnum);
+	public List<Holding> getAllHoldings(String clientId) {
+		return mapper.getAllHoldings(clientId);
 	}
 
 	@Override
-	public Holding getHoldingBySecurityId(String acctnum, int s_id) {
-		return mapper.getHoldingBySecurityId(acctnum, s_id);
+	public Holding getHoldingBySecurityId(String clientId, int s_id) {
+		return mapper.getHoldingBySecurityId(clientId, s_id);
 	}
 
 	@Override
-	public void addHolding(String acctnum, Holding holding) {
-		mapper.addHolding(acctnum, holding);
+	public void addHolding(String clientId, Holding holding) {
+		mapper.addHolding(clientId, holding);
 	}
 
 	@Override
-	public void updateHolding(String acctnum, Holding holding) {
-		mapper.updateHolding(acctnum, holding);
+	public void updateHolding(String clientId, Holding holding) {
+		mapper.updateHolding(clientId, holding);
 	}
 
 	@Override
-	public void deleteHolding(String acctnum, Holding holding) {
-		mapper.deleteHolding(acctnum, holding);
+	public void deleteHolding(String clientId, Holding holding) {
+		mapper.deleteHolding(clientId, holding);
 	}
 
 }

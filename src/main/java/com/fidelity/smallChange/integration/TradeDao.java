@@ -5,10 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.fidelity.smallChange.business.Trade;
+import com.fidelity.smallChange.business.TradeFilter;
+import com.fidelity.smallChange.dto.FilterDto;
 
 public interface TradeDao {
-	List<Trade> getAllTrades(String accNum);
-	void transactSecurity(int t_id,String accNum, Trade trade, int s_id);
-	List<Trade> getTradesFilterbyAmount(String accNum, double startAmt,double endAmt);
-	List<Trade> getTradesFilterbySymbol(String accNum, String symbol);
+	List<Trade> getAllTrades(String clientId);
+	void transactSecurity(String clientId, Trade trade, int s_id);
+	List<Trade> getTradesWithFilter(String clientId, TradeFilter filter);
 }

@@ -1,23 +1,23 @@
 package com.fidelity.smallChange.dto;
 
 public class AccountDto {
-	private String acctNum;
+	private String clientId;
 
 	public AccountDto() {
 		super();
 	}
 
-	public AccountDto(String acctNum) {
+	public AccountDto(String clientId) {
 		super();
-		this.acctNum = acctNum;
+		this.clientId = clientId;
 	}
 
-	public String getAcctNum() {
-		return acctNum;
+	public String getClientId() {
+		return clientId;
 	}
 
-	public void setAcctNum(String acctNum) {
-		this.acctNum = acctNum;
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 	
 	

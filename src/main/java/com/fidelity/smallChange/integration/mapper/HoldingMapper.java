@@ -11,12 +11,12 @@ import com.fidelity.smallChange.business.Holding;
 public interface HoldingMapper {
 	List<Holding> getAllHoldings(String acctnum);
 
-	Holding getHoldingBySecurityId(@Param("acctnum") String acctnum, @Param("s_id") int s_id);
+	Holding getHoldingBySecurityId(@Param("clientId") String clientId, @Param("s_id") int s_id);
 
-	void addHolding(@Param("acctnum") String acctnum, @Param("holding") Holding holding);
+	void addHolding(@Param("clientId") String clientId, @Param("holding") Holding holding);
 
-	void updateHolding(@Param("acctnum") String acctnum, @Param("holding") Holding holding);
+	void updateHolding(@Param("clientId") String clientId, @Param("holding") Holding holding);
 
-	void deleteHolding(@Param("acctnum") String acctnum, @Param("holding") Holding holding);
+	void deleteHolding(@Param("clientId") String clientId, @Param("holding") Holding holding);
 
 }

@@ -1,21 +1,44 @@
 package com.fidelity.smallChange.business;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Account {
 	private String username;
-	private String acct_num;
-	private String type;
+	private String clientId;
+	private BigDecimal funds;
 	
 	public Account() {
 		super();
 	}
 
-	public Account(String username, String acct_num, String type) {
+	public Account(String clientId, BigDecimal funds) {
+		super();
+		this.clientId = clientId;
+		this.funds = funds;
+	}
+
+	public Account(String username, String clientId, BigDecimal funds) {
 		super();
 		this.username = username;
-		this.acct_num = acct_num;
-		this.type = type;
+		this.clientId = clientId;
+		this.funds = funds;
+	}
+
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+
+	public BigDecimal getFunds() {
+		return funds;
+	}
+
+	public void setFunds(BigDecimal funds) {
+		this.funds = funds;
 	}
 
 	public String getUsername() {
@@ -26,25 +49,9 @@ public class Account {
 		this.username = username;
 	}
 
-	public String getAcct_num() {
-		return acct_num;
-	}
-
-	public void setAcct_num(String acct_num) {
-		this.acct_num = acct_num;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(acct_num, type, username);
+		return Objects.hash(clientId, funds, username);
 	}
 
 	@Override
@@ -56,8 +63,19 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		return Objects.equals(acct_num, other.acct_num) && Objects.equals(type, other.type)
+		return Objects.equals(clientId, other.clientId) && Objects.equals(funds, other.funds)
 				&& Objects.equals(username, other.username);
 	}
+
+	@Override
+	public String toString() {
+		return "Account [username=" + username + ", clientId=" + clientId + ", funds=" + funds + "]";
+	}
+
+
+	
+	
+	
+	
 	
 }

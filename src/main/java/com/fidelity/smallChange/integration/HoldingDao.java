@@ -5,13 +5,13 @@ import java.util.List;
 import com.fidelity.smallChange.business.Holding;
 
 public interface HoldingDao {
-	List<Holding> getAllHoldings(String acctnum);
+	List<Holding> getAllHoldings(String clientId);
 
-	Holding getHoldingBySecurityId(String acctnum, int s_id);
+	Holding getHoldingBySecurityId(String clientId, int s_id);
 
-	void addHolding(String acctnum, Holding holding);
+	void addHolding(String clientId, Holding holding);
 
-	void updateHolding(String acctnum, Holding holding);
+	void updateHolding(String clientId, Holding holding);
 
-	void deleteHolding(String acctnum, Holding holding);
+	void deleteHolding(String clientId, Holding holding);
 }

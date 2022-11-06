@@ -6,31 +6,31 @@ import java.util.Objects;
 import com.fidelity.smallChange.business.Security;
 
 public class TradeDto {
-	private String acct_num;
+	private String clientId;
 	private String trade_type;
 	private double quantity;
-	private double amount;
+	private double price;
 	private int s_id;
 	
 	public TradeDto() {
 		super();
 	}
 
-	public TradeDto(String acct_num, String trade_type, double quantity, double amount, int s_id) {
+	public TradeDto(String clientId, String trade_type, double quantity, double price, int s_id) {
 		super();
-		this.acct_num = acct_num;
+		this.clientId = clientId;
 		this.trade_type = trade_type;
 		this.quantity = quantity;
-		this.amount = amount;
+		this.price = price;
 		this.s_id = s_id;
 	}
 
-	public String getAcct_num() {
-		return acct_num;
+	public String getClientId() {
+		return clientId;
 	}
 
-	public void setAcct_num(String acct_num) {
-		this.acct_num = acct_num;
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
 	}
 
 	public String getTrade_type() {
@@ -49,12 +49,12 @@ public class TradeDto {
 		this.quantity = quantity;
 	}
 
-	public double getAmount() {
-		return amount;
+	public double getPrice() {
+		return price;
 	}
 
 	public void setAmount(double amount) {
-		this.amount = amount;
+		this.price = price;
 	}
 
 	public int getS_id() {

@@ -8,7 +8,7 @@ public class Trade {
 	private Security security;
 	private LocalDateTime trade_time;
 	private double quantity;
-	private double amount;
+	private double price;
 
 
 
@@ -16,21 +16,21 @@ public class Trade {
 		super();
 	}
 
-	public Trade(String trade_type, LocalDateTime trade_time, double quantity, double amount) {
+	public Trade(String trade_type, LocalDateTime trade_time, double quantity, double price) {
 		super();
 		this.trade_type = trade_type;
 		this.trade_time = trade_time;
 		this.quantity = quantity;
-		this.amount = amount;
+		this.price = price;
 	}
 
-	public Trade(String trade_type, Security security, LocalDateTime trade_time, double quantity, double amount) {
+	public Trade(String trade_type, Security security, LocalDateTime trade_time, double quantity, double price) {
 		super();
 		this.trade_type = trade_type;
 		this.security = security;
 		this.trade_time = trade_time;
 		this.quantity = quantity;
-		this.amount = amount;
+		this.price = price;
 	}
 
 	public String getTrade_type() {
@@ -65,12 +65,12 @@ public class Trade {
 		this.quantity = quantity;
 	}
 
-	public double getAmount() {
-		return amount;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 
