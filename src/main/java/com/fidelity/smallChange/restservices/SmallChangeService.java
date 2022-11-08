@@ -1,17 +1,11 @@
 package com.fidelity.smallChange.restservices;
 
-<<<<<<< HEAD
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Base64;
-=======
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
->>>>>>> 78d40e697f8def23fef6bf27330b7f169355b22e
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
