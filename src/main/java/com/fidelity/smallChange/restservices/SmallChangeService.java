@@ -1,8 +1,11 @@
 package com.fidelity.smallChange.restservices;
 
+import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,10 +76,21 @@ public class SmallChangeService {
 	@Autowired
 	UserDao userDao;
 	
-	@GetMapping( value ="/login",
+	@PostMapping( value ="/login",
 			consumes = {MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<User> userLogin(@RequestBody LoginDto loginDto) {
-		User user = userDao.loginUser(loginDto.getUsername(),loginDto.getPassword());
+		
+		byte[] decodedBytes = Base64.getDecoder().decode(loginDto.getUsername());
+		String username = new String(decodedBytes, Charset.defaultCharset());
+		
+		decodedBytes = Base64.getDecoder().decode(loginDto.getPassword());
+		String password = new String(decodedBytes, Charset.defaultCharset());
+		
+		System.out.println(username);
+		System.out.println(password);
+		User user = userDao.loginUser(username, password);
+
+		System.out.println(user);
 		return ResponseEntity.ok(user);
 	}
 	
