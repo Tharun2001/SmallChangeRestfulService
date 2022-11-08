@@ -9,7 +9,7 @@ public class UserDto {
 	private String firstName;
 	private String lastName;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate dob;
 	
 	private String email;

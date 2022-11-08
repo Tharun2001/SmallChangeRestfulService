@@ -110,9 +110,9 @@ public class SmallChangeService {
 		}
 	}
 	
-	@GetMapping(value ="/accounts")
-	public ResponseEntity<Account> getAccount(@RequestBody UsernameDto  user){
-		Account acct = accountDao.getAccount(user.getUsername());
+	@PostMapping(value ="/accounts")
+	public ResponseEntity<Integer> getAccount(@RequestBody UsernameDto  user){
+		int acct = accountDao.checkIfAccountExists(user.getUsername());
 		return ResponseEntity.ok(acct);
 	}
 
