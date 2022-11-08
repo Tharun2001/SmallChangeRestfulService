@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,7 @@ import com.fidelity.smallChange.service.AccountService;
 import com.fidelity.smallChange.service.TradeService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class SmallChangeService {
 	@Autowired
@@ -158,7 +160,7 @@ public class SmallChangeService {
 		return ResponseEntity.ok(holdingDtos);
 	}
 	
-	@GetMapping("/trades")
+	@PostMapping("/trades")
 	public ResponseEntity<List<TradeHistoryDto>> queryAlltrades(@RequestBody AccountDto  account) {
 		List<Trade> trades = tradeDao.getAllTrades(account.getClientId());
 		List<TradeHistoryDto> tradesDto = new ArrayList<>();
@@ -168,8 +170,8 @@ public class SmallChangeService {
 							trade.getSecurity().getScode(),
 							trade.getQuantity(),
 							trade.getPrice(),
-							trade.getTrade_type(),
 							trade.getSecurity().getAssetClass(),
+							trade.getTrade_type(),
 							trade.getTrade_time());
 			tradesDto.add(tradeHistoryDto);
 		}
