@@ -1,5 +1,6 @@
 package com.fidelity.smallChange.restservices;
 
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -116,28 +117,42 @@ public class SmallChangeService {
 		return ResponseEntity.ok(acct);
 	}
 
+	@PostMapping(value ="/accounts/getDetails")
+	public ResponseEntity<Account> getAccountDetails(@RequestBody UsernameDto  user){
+		Account account = accountDao.getAccount(user.getUsername());
+		return ResponseEntity.ok(account);
+	}
+	
+	@PostMapping(value ="/accounts/getFunds")
+	public ResponseEntity<BigDecimal> getAccountFunds(@RequestBody AccountDto  accountDto){
+		BigDecimal funds = accountDao.getAccountFunds(accountDto.getClientId());
+		return ResponseEntity.ok(funds);
+	}
+	
 	@PostMapping(value ="/accounts/addFunds")
-	public ResponseEntity<String> addFunds(@RequestBody FundsDto fundsDto){
+	public ResponseEntity<Integer> addFunds(@RequestBody FundsDto fundsDto){
 		try {
 			accountService.addFunds(fundsDto.getClientId(), fundsDto.getAccount_number(), 
 					fundsDto.getAmount());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResponseEntity.ok(0);
 		}
-		return ResponseEntity.ok("Success");
+		return ResponseEntity.ok(1);
 	}
 	
 	@PostMapping(value ="/accounts/withdrawFunds")
-	public ResponseEntity<String> withdrawFunds(@RequestBody FundsDto fundsDto){
+	public ResponseEntity<Integer> withdrawFunds(@RequestBody FundsDto fundsDto){
 		try {
 			accountService.withdrawFunds(fundsDto.getClientId(), fundsDto.getAccount_number(), 
 					fundsDto.getAmount());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResponseEntity.ok(0);
 		}
-		return ResponseEntity.ok("Success");
+		return ResponseEntity.ok(1);
 	}
 	
 	@PostMapping("/bankAccounts")
