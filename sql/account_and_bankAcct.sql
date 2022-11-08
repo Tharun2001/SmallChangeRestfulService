@@ -16,7 +16,12 @@ CREATE TABLE sc_bankaccount (
     FOREIGN KEY(clientId) REFERENCES sc_account(clientId)
 ); 
 
-INSERT INTO sc_account(username, clientId, funds) VALUES ('Aryan', 'ABC123', 100000);
-INSERT INTO sc_bankaccount(clientId, account_number, bank_name, balance) values('ABC123', '608502111', 'XYZ bank', 1050000.0);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Aryan','ABC123',85324);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Elend','FLM504',81910);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Ethan','HVL491',76586.6);
+
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('HVL491','1111222333','BUH bank',262114286);
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('ABC123','608502111','XYZ bank',1050000);
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('FLM504','666555444','Yes bank',2400000);
 
 COMMIT;
