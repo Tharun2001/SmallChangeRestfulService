@@ -29,6 +29,7 @@ import com.fidelity.smallChange.business.Trade;
 import com.fidelity.smallChange.business.TradeFilter;
 import com.fidelity.smallChange.business.User;
 import com.fidelity.smallChange.dto.AccountDto;
+import com.fidelity.smallChange.dto.BankAccountDetailsDto;
 import com.fidelity.smallChange.dto.BankAccountDto;
 import com.fidelity.smallChange.dto.FilterDto;
 import com.fidelity.smallChange.dto.FundsDto;
@@ -139,10 +140,18 @@ public class SmallChangeService {
 		return ResponseEntity.ok("Success");
 	}
 	
-	@GetMapping("/bankAccounts")
-	public ResponseEntity<List<BankAccount>> queryForAllBankAccount(@RequestBody AccountDto  account) {
+	@PostMapping("/bankAccounts")
+	public ResponseEntity<List<BankAccountDetailsDto>> queryForAllBankAccount(@RequestBody AccountDto  account) {
 		List<BankAccount> bankAccounts = bankDao.getBankAccounts(account.getClientId());
-		return ResponseEntity.ok(bankAccounts);
+		List<BankAccountDetailsDto> bankAccountsDetailsDtos = new ArrayList<>();
+		for(BankAccount ele: bankAccounts) {
+			BankAccountDetailsDto bankDetails = new BankAccountDetailsDto();
+			bankDetails.setAccount_number(ele.getAccount_number());
+			bankDetails.setBalance(ele.getBalance());
+			bankDetails.setBank_name(ele.getBank_name());
+			bankAccountsDetailsDtos.add(bankDetails);
+		}
+		return ResponseEntity.ok(bankAccountsDetailsDtos);
 	}
 	
 	@PostMapping("/bankAccounts/addAccount")
