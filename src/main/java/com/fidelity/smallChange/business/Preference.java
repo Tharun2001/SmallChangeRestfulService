@@ -1,8 +1,6 @@
 package com.fidelity.smallChange.business;
 
 public class Preference {
-	
-	
 	private String username;
 	private String purpose;
 	private int risk;

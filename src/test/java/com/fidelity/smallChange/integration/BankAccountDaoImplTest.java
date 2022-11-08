@@ -53,4 +53,19 @@ class BankAccountDaoImplTest {
 		
 		assertEquals(old-1, dao.getBankAccounts("ABC123").size());
 	}
+	
+	@Test
+	void testGetAccountBalance() {
+		BigDecimal balance = dao.getBankBalance("608502111");
+		assertTrue(balance.compareTo(BigDecimal.ZERO) != 0);
+	}
+	
+	@Test
+	void testupdateBankBalance() {
+		BigDecimal newBalance = BigDecimal.valueOf(100000);
+		dao.updateBankBalance("608502111", newBalance);
+		
+		BigDecimal balance = dao.getBankBalance("608502111");
+		assertTrue(balance.compareTo(newBalance) == 0);
+	}
 }

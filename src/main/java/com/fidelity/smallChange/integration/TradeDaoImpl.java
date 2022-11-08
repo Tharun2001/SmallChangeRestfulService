@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.fidelity.smallChange.business.Trade;
+import com.fidelity.smallChange.business.TradeFilter;
 import com.fidelity.smallChange.integration.mapper.TradeMapper;
 
 
@@ -19,25 +20,19 @@ public class TradeDaoImpl implements TradeDao{
 	TradeMapper mapper;
 	
 	@Override
-	public List<Trade> getAllTrades(String accNum) {
-		return mapper.getAllTrades(accNum);
+	public List<Trade> getAllTrades(String clientId) {
+		return mapper.getAllTrades(clientId);
 	}
 
 	@Override
-	public void transactSecurity(int t_id, String accNum, Trade trade, int s_id) {
-		mapper.transactSecurity(t_id, accNum,trade,s_id, Timestamp.valueOf(trade.getTrade_time()));
+	public void transactSecurity(String clientId, Trade trade, int s_id) {
+		mapper.transactSecurity(clientId,trade,s_id, Timestamp.valueOf(trade.getTrade_time()));
 	}
 
 	@Override
-	public List<Trade> getTradesFilterbyAmount(String accNum, double startAmt, double endAmt) {
+	public List<Trade> getTradesWithFilter(String clientId, TradeFilter filter) {
 		// TODO Auto-generated method stub
-		return mapper.getTradesFilterbyAmount(accNum, startAmt, endAmt);
-	}
-
-	@Override
-	public List<Trade> getTradesFilterbySymbol(String accNum, String symbol) {
-		// TODO Auto-generated method stub
-		return mapper.getTradesFilterbySymbol(accNum, symbol);
+		return mapper.getTradesWithFilter(clientId, filter);
 	}
 
 }

@@ -38,7 +38,7 @@ class HoldingDaoImplTest {
 	@Test
 	void addHolding() {
 		Security security = new Security(2, "Tesla Inc", "TSLA", 733.8, "Main Index");
-		Holding holding = new Holding(2, 2, security, 10, 2000);
+		Holding holding = new Holding(security.getSid(), security, 10, 2000);
 
 		dao.addHolding("ABC123", holding);
 
@@ -49,8 +49,6 @@ class HoldingDaoImplTest {
 	@Test
 	void updateHolding() {
 		Holding holding = dao.getHoldingBySecurityId("ABC123", 1);
-		assertEquals(holding.getInvestedAmount(), 1000);
-
 		holding.setInvestedAmount(2000);
 		holding.setHoldingQuantity(20);
 
@@ -63,12 +61,12 @@ class HoldingDaoImplTest {
 
 	@Test
 	void deleteHolding() {
-		Holding holding = dao.getHoldingBySecurityId("ABC123", 1);
-		assertEquals(holding.getInvestedAmount(), 1000);
+		Holding holding = dao.getHoldingBySecurityId("ABC123", 2);
+		assertEquals(holding.getInvestedAmount(), 2000);
 
 		dao.deleteHolding("ABC123", holding);
 
-		Holding holding2 = dao.getHoldingBySecurityId("ABC123", 1);
+		Holding holding2 = dao.getHoldingBySecurityId("ABC123", 2);
 
 		assertNull(holding2);
 	}

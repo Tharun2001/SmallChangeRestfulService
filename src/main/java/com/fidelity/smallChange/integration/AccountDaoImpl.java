@@ -1,5 +1,6 @@
 package com.fidelity.smallChange.integration;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,30 @@ public class AccountDaoImpl implements AccountDao{
 	public Account getAccount(String username) {
 		// TODO Auto-generated method stub
 		return mapper.getAccount(username);
+	}
+
+	@Override
+	public int createAccount(Account account) {
+		// TODO Auto-generated method stub
+		return mapper.createAccount(account);
+	}
+
+	@Override
+	public int checkIfAccountExists(String clientId) {
+		// TODO Auto-generated method stub
+		return mapper.checkIfAccountExists(clientId);
+	}
+
+	@Override
+	public BigDecimal getAccountFunds(String clientId) {
+		// TODO Auto-generated method stub
+		return mapper.getAccountFunds(clientId);
+	}
+
+	@Override
+	public int updateFunds(String clientId, BigDecimal funds) {
+		// TODO Auto-generated method stub
+		return mapper.updateFunds(clientId, funds);
 	}
 
 	

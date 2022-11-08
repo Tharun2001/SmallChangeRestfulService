@@ -5,52 +5,50 @@
 <mapper namespace="com.fidelity.smallChange.integration.mapper.HoldingMapper">
 
 	 <resultMap type="Holding" id="HoldingWithSecurityMap">
-		<id property="holdingId" column="HOLDING_ID"/>
 		<result property="holdingQuantity" column="QTY"/>
 		<result property="investedAmount" column="INVESTED_AMOUNT"/>
 		<result property="sId" column="S_ID"/>
-		<result property="security.stockId" column="S_ID"/>
-		<result property="security.stockName" column="S_NAME"/>
-		<result property="security.stockCode" column="S_CODE"/>
-		<result property="security.stockLtp" column="S_LTP"/>
-		<result property="security.stockAssetClass" column="S_ASSET_CLASS"/>
+		<result property="security.sid" column="S_ID"/>
+		<result property="security.sname" column="S_NAME"/>
+		<result property="security.scode" column="S_CODE"/>
+		<result property="security.ltp" column="S_LTP"/>
+		<result property="security.assetClass" column="S_ASSET_CLASS"/>
 	</resultMap>
 	
 	<select id="getAllHoldings" resultMap="HoldingWithSecurityMap" parameterType="String">
 		SELECT hld.HOLDING_ID, hld.QTY, hld.INVESTED_AMOUNT, hld.S_ID, stk.S_ID, stk.S_NAME, stk.S_CODE, stk.S_LTP, stk.S_ASSET_CLASS
 		FROM SC_HOLDING hld 
-        LEFT JOIN SC_STOCK_SECURITIES stk
+        LEFT JOIN SC_SECURITIES stk
         ON hld.s_id = stk.s_id 
-        where hld.account_number = #{value}
+        where hld.clientId = #{value}
 	</select>
 	
 	<select id="getHoldingBySecurityId" resultMap="HoldingWithSecurityMap">
 		SELECT hld.HOLDING_ID, hld.QTY, hld.INVESTED_AMOUNT, hld.S_ID, stk.S_ID, stk.S_NAME, stk.S_CODE, stk.S_LTP, stk.S_ASSET_CLASS
 		FROM SC_HOLDING hld 
-        LEFT JOIN SC_STOCK_SECURITIES stk
+        LEFT JOIN SC_SECURITIES stk
         ON hld.s_id = stk.s_id 
-        where hld.account_number = #{acctnum} and hld.s_id = #{s_id} 
+        where hld.clientId = #{clientId} and hld.s_id = #{s_id} 
 	</select>
 	
 	<insert id="addHolding" parameterType="Map">
-		INSERT INTO SC_HOLDING(HOLDING_ID, S_ID, QTY, INVESTED_AMOUNT, ACCOUNT_NUMBER)
-		VALUES( #{holding.holdingId}, #{holding.sId}, 
-		#{holding.holdingQuantity}, #{holding.investedAmount}, #{acctnum})
+		INSERT INTO SC_HOLDING(S_ID, QTY, INVESTED_AMOUNT, clientId)
+		VALUES(#{holding.sId}, 
+		#{holding.holdingQuantity}, #{holding.investedAmount}, #{clientId})
 	</insert>
 	
 	<delete id="deleteHolding" parameterType="Map">
 		DELETE FROM SC_HOLDING 
-		WHERE ACCOUNT_NUMBER = #{acctnum} AND s_id = #{holding.sId}
+		WHERE clientId = #{clientId} AND s_id = #{holding.sId}
 	</delete>
 	
 	<update id="updateHolding" parameterType="Map">
 		UPDATE SC_HOLDING
 			SET
-				HOLDING_ID = #{holding.holdingId},
 				QTY = #{holding.holdingQuantity},
 				INVESTED_AMOUNT = #{holding.investedAmount}
 			WHERE				
-				ACCOUNT_NUMBER = #{acctnum} AND 
+				clientId = #{clientId} AND 
 				S_ID = #{holding.sId}
 	</update>
 </mapper>

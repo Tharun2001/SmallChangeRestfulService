@@ -6,50 +6,74 @@
 	 <resultMap type="Trade" id="TradeMap">
 	 	<result property="trade_type" column="TRADE_TYPE"/>
 	 	<result property="trade_time" column="TRADE_TIME"/>
-	 	<result property="amount" column="AMOUNT"/>
+	 	<result property="price" column="PRICE"/>
 	 	<result property="quantity" column="QUANTITY"/>
 	 	<association property="security" resultMap="SecurityMap" />
 	 </resultMap>
 	 
 	 <resultMap type="Security" id="SecurityMap">
-		<id property="stockId" column="S_ID"/>
-		<result property="stockName" column="S_NAME"/>
-		<result property="stockCode" column="S_CODE"/>
-		<result property="stockLtp" column="S_LTP"/>
-		<result property="stockAssetClass" column="S_ASSET_CLASS"/>		
+		<id property="sid" column="S_ID"/>
+		<result property="sname" column="S_NAME"/>
+		<result property="scode" column="S_CODE"/>
+		<result property="ltp" column="S_LTP"/>
+		<result property="assetClass" column="S_ASSET_CLASS"/>		
 	</resultMap>
 	
 	<select id="getAllTrades" parameterType="String" resultMap="TradeMap">
-		select t.TRADE_TYPE, t.TRADE_TIME, t.AMOUNT, t.QUANTITY, 
+		select t.TRADE_TYPE, t.TRADE_TIME, t.price, t.QUANTITY, 
 				s.S_ID, s.S_NAME, s.S_CODE, s.S_LTP, s.S_ASSET_CLASS
 		from SC_TRADE t 
-		left join SC_STOCK_SECURITIES s
+		left join SC_SECURITIES s
 		on t.s_id = s.s_id
-        where t.account_number = #{acctnum}
+        where t.clientId = #{clientId}
 	</select>
 	
-	<select id="getTradesFilterbyAmount" parameterType="Map" resultMap="TradeMap">
-		select t.TRADE_TYPE, t.TRADE_TIME, t.AMOUNT, t.QUANTITY, 
+	<select id="getTradesWithFilter" parameterType="Map" resultMap="TradeMap">
+		select t.TRADE_TYPE, t.TRADE_TIME, t.PRICE, t.QUANTITY, 
 				s.S_ID, s.S_NAME, s.S_CODE, s.S_LTP, s.S_ASSET_CLASS
 		from SC_TRADE t 
-		left join SC_STOCK_SECURITIES s
+		left join SC_SECURITIES s
 		on t.s_id = s.s_id
-        where t.account_number = #{acctnum} and t.AMOUNT &lt;= #{endAmt} and t.AMOUNT &gt;= #{startAmt}
-	</select>
-	
-	<select id="getTradesFilterbySymbol" parameterType="Map" resultMap="TradeMap">
-		select t.TRADE_TYPE, t.TRADE_TIME, t.AMOUNT, t.QUANTITY, 
-				s.S_ID, s.S_NAME, s.S_CODE, s.S_LTP, s.S_ASSET_CLASS
-		from SC_TRADE t 
-		left join SC_STOCK_SECURITIES s
-		on t.s_id = s.s_id
-        where t.account_number = #{acctnum} and s.S_CODE = #{symbol}
+		<where>
+			t.CLIENTID = #{clientId}
+			<if test = "filter.symbol != null">
+				and s.S_CODE IN
+				<foreach item = "item" index ="index" collection="filter.symbol" 
+					open = "(" separator ="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			
+			<if test = "filter.asset_class != null">
+				AND s.S_ASSET_CLASS IN
+				<foreach item = "item" index ="index" collection="filter.asset_class" 
+					open = "(" separator ="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			
+			<if test = "filter.side != null ">
+				and t.TRADE_TYPE = #{filter.side}
+			</if>
+			
+			<if test = "filter.endAmt != 0">
+				and t.PRICE*t.QUANTITY &lt;= #{filter.endAmt} 
+				and t.PRICE*t.QUANTITY &gt;= #{filter.startAmt}
+			</if>
+			<if test = "filter.startDate != null">
+				and t.TRADE_TIME &gt;= #{filter.startDate}
+			</if>
+			<if test = "filter.endDate != null">
+				and t.TRADE_TIME &lt;= #{filter.endDate} 
+			</if>
+			
+		</where>
 	</select>
 	
 	<insert id="transactSecurity" parameterType="Map">
-		INSERT INTO SC_TRADE(TRADE_ID, ACCOUNT_NUMBER, TRADE_TYPE, S_ID, 
-		QUANTITY, AMOUNT, TRADE_TIME)
-		VALUES(#{t_id}, #{acctnum}, #{trade.trade_type}, #{s_id}, 
-		#{trade.quantity}, #{trade.amount}, #{timestamp})
+		INSERT INTO SC_TRADE(clientId, TRADE_TYPE, S_ID, 
+		QUANTITY, PRICE, TRADE_TIME)
+		VALUES(#{clientId}, #{trade.trade_type}, #{s_id}, 
+		#{trade.quantity}, #{trade.price}, #{timestamp})
 	</insert>
 </mapper>

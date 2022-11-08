@@ -1,5 +1,6 @@
 package com.fidelity.smallChange.integration;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +17,37 @@ public class BankAccountDaoImpl implements BankAccountDao {
 	private BankAccountMapper mapper;
 
 	@Override
-	public List<BankAccount> getBankAccounts(String acctnum) {
+	public List<BankAccount> getBankAccounts(String clientId) {
 		// TODO Auto-generated method stub
-		return mapper.getBankAccounts(acctnum);
+		return mapper.getBankAccounts(clientId);
 	}
 
 	@Override
-	public void insertBankAccount(BankAccount acct) {
-		mapper.insertBankAccount(acct);	
+	public int insertBankAccount(BankAccount acct) {
+		return mapper.insertBankAccount(acct);	
 	}
 
 	@Override
-	public void updateBankAccount(BankAccount acct) {
-		mapper.updateBankAccount(acct);
+	public int updateBankAccount(BankAccount acct) {
+		return mapper.updateBankAccount(acct);
 		
 	}
 
 	@Override
-	public void deleteBankAccount(String acctnum) {
-		mapper.deleteBankAccount(acctnum);
+	public int deleteBankAccount(String acctnum) {
+		return mapper.deleteBankAccount(acctnum);
 		
+	}
+
+	@Override
+	public BigDecimal getBankBalance(String acct_num) {
+		// TODO Auto-generated method stub
+		return mapper.getBankBalance(acct_num);
+	}
+
+	@Override
+	public int updateBankBalance(String acct_num, BigDecimal amt) {
+		// TODO Auto-generated method stub
+		return mapper.updateBankBalance(acct_num, amt);
 	}
 }

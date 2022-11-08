@@ -1,11 +1,16 @@
 package com.fidelity.smallChange.dto;
 
 import java.time.LocalDate;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserDto {
 	private String firstName;
 	private String lastName;
-	private String dob;
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	private LocalDate dob;
 	
 	private String email;
 	private String phone;
@@ -16,7 +21,7 @@ public class UserDto {
 		super();
 	}
 
-	public UserDto(String firstName, String lastName, String dob, String email, String phone, String username,
+	public UserDto(String firstName, String lastName, LocalDate dob, String email, String phone, String username,
 			String password) {
 		super();
 		this.firstName = firstName;
@@ -44,11 +49,11 @@ public class UserDto {
 		this.lastName = lastName;
 	}
 
-	public String getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -83,6 +88,13 @@ public class UserDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDto [firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", email=" + email
+				+ ", phone=" + phone + ", username=" + username + ", password=" + password + "]";
+	}
+	
 	
 	
 	
