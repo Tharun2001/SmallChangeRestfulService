@@ -15,8 +15,8 @@
 	</insert>
 	
 	<select id="checkIfAccountExists" parameterType="String" resultType="int">
-		select count(clientId) from SC_ACCOUNT 
-		where clientId = #{value}
+		select count(username) from SC_USERS 
+		where username = #{value}
 	</select>
 	
 	<select id="getAccountFunds" resultType="BigDecimal">
