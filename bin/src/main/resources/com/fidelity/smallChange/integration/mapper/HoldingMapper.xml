@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.smallChange.integration.mapper.HoldingMapper">
+
+	 <resultMap type="Holding" id="HoldingWithSecurityMap">
+		<id property="holdingId" column="HOLDING_ID"/>
+		<result property="holdingQuantity" column="QTY"/>
+		<result property="investedAmount" column="INVESTED_AMOUNT"/>
+		<result property="sId" column="S_ID"/>
+		<result property="security.stockId" column="S_ID"/>
+		<result property="security.stockName" column="S_NAME"/>
+		<result property="security.stockCode" column="S_CODE"/>
+		<result property="security.stockLtp" column="S_LTP"/>
+		<result property="security.stockAssetClass" column="S_ASSET_CLASS"/>
+	</resultMap>
+	
+	<select id="getAllHoldings" resultMap="HoldingWithSecurityMap" parameterType="String">
+		SELECT hld.HOLDING_ID, hld.QTY, hld.INVESTED_AMOUNT, hld.S_ID, stk.S_ID, stk.S_NAME, stk.S_CODE, stk.S_LTP, stk.S_ASSET_CLASS
+		FROM SC_HOLDING hld 
+        LEFT JOIN SC_STOCK_SECURITIES stk
+        ON hld.s_id = stk.s_id 
+        where hld.account_number = #{value}
+	</select>
+	
+	<select id="getHoldingBySecurityId" resultMap="HoldingWithSecurityMap">
+		SELECT hld.HOLDING_ID, hld.QTY, hld.INVESTED_AMOUNT, hld.S_ID, stk.S_ID, stk.S_NAME, stk.S_CODE, stk.S_LTP, stk.S_ASSET_CLASS
+		FROM SC_HOLDING hld 
+        LEFT JOIN SC_STOCK_SECURITIES stk
+        ON hld.s_id = stk.s_id 
+        where hld.account_number = #{acctnum} and hld.s_id = #{s_id} 
+	</select>
+	
+	<insert id="addHolding" parameterType="Map">
+		INSERT INTO SC_HOLDING(HOLDING_ID, S_ID, QTY, INVESTED_AMOUNT, ACCOUNT_NUMBER)
+		VALUES( #{holding.holdingId}, #{holding.sId}, 
+		#{holding.holdingQuantity}, #{holding.investedAmount}, #{acctnum})
+	</insert>
+	
+	<delete id="deleteHolding">
+		delete from SC_HOLDING where s_id = #{s_id}
+	</delete>
+
+</mapper>

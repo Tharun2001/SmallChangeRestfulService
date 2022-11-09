@@ -30,10 +30,10 @@ class SecurityDaoImplTest {
 //	
 	@Test
 	void testInsertSecurities() {
-        Security newSecurity = new Security(12, "Spacex", "TSLA",733.8,"Main Index");
+        Security newSecurity = new Security(68, "Twitter", "TSLX",733.8,"Main Index");
         dao.insertSecurity(newSecurity);
         List<Security> allSecurity= dao.getSecurities();
-    	assertEquals(11 ,allSecurity.size());
+    	assertEquals(25 ,allSecurity.size());
 
 	}
 //	
@@ -53,32 +53,20 @@ class SecurityDaoImplTest {
         int id = 3;
         dao.deleteSecurity(id);
     	List<Security> allSecurity= dao.getSecurities();
-    	assertEquals(9 ,allSecurity.size());
+    	assertEquals(23 ,allSecurity.size());
     }
 //    
 
 
 //    
 //
-//    @Test
-//    void testDeleteNegativeSecurityId() throws Exception
-//    {
-//    	int id =-1;
-//        assertThrows(MyBatisSystemException.class, () -> {
-//            dao.deleteSecurity(id);
-//        });
-//       
-//    }
-//    
-//    @Test
-//    void testDeleteZeroSecurityId() throws Exception
-//    {
-//    	int id =0;
-//    	
-//        assertThrows(MyBatisSystemException.class, () -> {
-//            dao.deleteSecurity(id);
-//        });
-//      
-//    }
+    @Test
+    void testDeleteNegativeSecurityId() throws Exception
+    {
+    	int id =-1;
+    	dao.deleteSecurity(id);
+       
+    }
 
+    
 }
