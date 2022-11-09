@@ -3,6 +3,7 @@ package com.fidelity.smallChange.dto;
 import java.time.LocalDateTime;
 
 public class HoldingDto {
+	private int sid;
 	private String name;
 	private String code;
 	private double quantity;
@@ -10,6 +11,13 @@ public class HoldingDto {
 	private double ltp;
 	private String asset_class;
 	
+
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
 	public String getName() {
 		return name;
 	}

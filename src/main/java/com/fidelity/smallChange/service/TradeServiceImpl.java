@@ -81,9 +81,11 @@ public class TradeServiceImpl implements TradeService{
 		double tradeAmt = trade.getQuantity()*trade.getPrice();
 		
 		if(holding.getHoldingQuantity() == trade.getQuantity()) {
+			this.logger.debug("ClientId "+clientId+" deleting stock with id "+s_id);
 			holdingDao.deleteHolding(clientId, holding);
 		}
 		else {
+			this.logger.debug("updating holding of clientid"+clientId+" for sid "+holding.getsId());
 			double qty = holding.getHoldingQuantity() - trade.getQuantity();
 			double amount = holding.getInvestedAmount() - trade.getQuantity()*trade.getPrice();
 			if(amount < 0) {

@@ -181,12 +181,13 @@ public class SmallChangeService {
 		return ResponseEntity.ok(Integer.valueOf(value));
 	}
 	
-	@GetMapping("/holdings")
+	@PostMapping("/holdings")
 	public ResponseEntity<List<HoldingDto>> queryAllHoldings(@RequestBody AccountDto account) {
 		List<Holding> holdings = holdingDao.getAllHoldings(account.getClientId());
 		List<HoldingDto> holdingDtos = new ArrayList<>();
 		for(Holding holding: holdings) {
 			HoldingDto holdingDto = new HoldingDto();
+			holdingDto.setSid(holding.getSecurity().getSid());
 			holdingDto.setAsset_class(holding.getSecurity().getAssetClass());
 			holdingDto.setCode(holding.getSecurity().getScode());
 			holdingDto.setName(holding.getSecurity().getSname());
@@ -240,7 +241,7 @@ public class SmallChangeService {
 
 	
 	@PostMapping("/trades/transaction")
-	public void transactSecurity(@RequestBody TradeDto trade) {
+	public ResponseEntity<Integer> transactSecurity(@RequestBody TradeDto trade) {
 		String clientId = trade.getClientId();
 		String trade_type = trade.getTrade_type();
 		double quantity = trade.getQuantity();
@@ -251,13 +252,14 @@ public class SmallChangeService {
 		try {
 			tradeService.transactSecurity(clientId, trade1, sid);
 		} catch (InsufficientFundsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResponseEntity.ok(0);
 		}
+		return ResponseEntity.ok(1);
 	}
 	
 	@GetMapping("/securities")
-	public ResponseEntity<List<Security>> queryAllUsers() {
+	public ResponseEntity<List<Security>> getSecurities() {
 		List<Security> securities = securityDao.getSecurities();
 		return ResponseEntity.ok(securities);
 	}
