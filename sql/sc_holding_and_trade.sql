@@ -37,13 +37,7 @@ REM INSERTING into SCOTT.SC_TRADE
 SET DEFINE OFF;
 REM INSERTING into SCOTT.SC_HOLDING
 SET DEFINE OFF;
---------------------------------------------------------
---  DDL for Index SC_TRADE_PK
---------------------------------------------------------
 
-  CREATE UNIQUE INDEX "SCOTT"."SC_TRADE_PK" ON "SCOTT"."SC_TRADE" ("TRADE_ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  TABLESPACE "SYSAUX" ;
 --------------------------------------------------------
 --  DDL for Index SC_HOLDING_PK
 --------------------------------------------------------
@@ -62,7 +56,6 @@ SET DEFINE OFF;
   ALTER TABLE "SCOTT"."SC_TRADE" MODIFY ("QUANTITY" NOT NULL ENABLE);
   ALTER TABLE "SCOTT"."SC_TRADE" MODIFY ("PRICE" NOT NULL ENABLE);
   ALTER TABLE "SCOTT"."SC_TRADE" MODIFY ("TRADE_TIME" NOT NULL ENABLE);
-  ALTER TABLE "SCOTT"."SC_TRADE" ADD CONSTRAINT "SC_TRADE_PK" PRIMARY KEY ("TRADE_ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   TABLESPACE "SYSAUX"  ENABLE;
 --------------------------------------------------------

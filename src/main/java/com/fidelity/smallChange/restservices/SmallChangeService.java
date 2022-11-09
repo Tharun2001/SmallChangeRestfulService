@@ -24,6 +24,7 @@ import org.springframework.web.server.ServerErrorException;
 import com.fidelity.smallChange.business.Account;
 import com.fidelity.smallChange.business.BankAccount;
 import com.fidelity.smallChange.business.Holding;
+import com.fidelity.smallChange.business.Preference;
 import com.fidelity.smallChange.business.Profile;
 import com.fidelity.smallChange.business.Security;
 import com.fidelity.smallChange.business.Trade;
@@ -44,11 +45,14 @@ import com.fidelity.smallChange.exceptions.InsufficientFundsException;
 import com.fidelity.smallChange.integration.AccountDao;
 import com.fidelity.smallChange.integration.BankAccountDao;
 import com.fidelity.smallChange.integration.HoldingDao;
+import com.fidelity.smallChange.integration.PreferenceDao;
 import com.fidelity.smallChange.integration.SecurityDao;
 import com.fidelity.smallChange.integration.TradeDao;
 import com.fidelity.smallChange.integration.UserDao;
 import com.fidelity.smallChange.service.AccountService;
 import com.fidelity.smallChange.service.TradeService;
+
+import ch.qos.logback.classic.Logger;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -77,6 +81,9 @@ public class SmallChangeService {
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	PreferenceDao preferenceDao;
 	
 	@PostMapping( value ="/login",
 			consumes = {MediaType.APPLICATION_JSON_VALUE })
@@ -262,5 +269,33 @@ public class SmallChangeService {
 	public ResponseEntity<List<Security>> getSecurities() {
 		List<Security> securities = securityDao.getSecurities();
 		return ResponseEntity.ok(securities);
+	}
+	
+	@PostMapping("/preference")
+	public ResponseEntity<Preference> getPreference(@RequestBody UsernameDto username) {
+		Preference preference = preferenceDao.getPreference(username.getUsername());
+		return ResponseEntity.ok(preference);
+	}
+	
+	@PostMapping("/addPreference")
+	public ResponseEntity<Integer> addPreference(@RequestBody Preference preference) {
+		try {
+		preferenceDao.insertPreference(preference);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServerErrorException("Backend issue", e) ;
+		}
+		return ResponseEntity.ok(1);
+	}
+	
+	@PostMapping("/updatePreference")
+	public ResponseEntity<Integer> updatePreference(@RequestBody Preference preference) {
+		try {
+		preferenceDao.updatePreference(preference);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServerErrorException("Backend issue", e) ;
+		}
+		return ResponseEntity.ok(1);
 	}
 }

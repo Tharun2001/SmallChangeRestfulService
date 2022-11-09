@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.smallChange.integration.mapper.PreferenceMapper">
+
+	 <select id="getPreference" resultType="Preference">
+		select USERNAME, PURPOSE, RISK_TOLERANCE, INCOME_CATEGORY, LENGTH_OF_INVESTMENT 
+		from SC_PREFERENCES
+		where USERNAME = #{value}
+	</select>
+	
+	<insert id="insertPreference" parameterType="Preference">
+		INSERT INTO SC_PREFERENCES(USERNAME, PURPOSE, RISK_TOLERANCE, INCOME_CATEGORY, LENGTH_OF_INVESTMENT) 
+		VALUES (#{username}, #{purpose}, #{risk}, #{incomeCategory}, #{lengthOfInvestment})
+	</insert>
+	
+	<update id="updatePreference" parameterType="Preference">
+		UPDATE SC_PREFERENCES
+			SET 
+				USERNAME = #{username}, 
+				PURPOSE = #{purpose},
+				RISK_TOLERANCE =  #{risk}, 
+				INCOME_CATEGORY = #{incomeCategory}, 
+				LENGTH_OF_INVESTMENT = #{lengthOfInvestment}
+		WHERE USERNAME = #{username}
+	</update>
+</mapper>
