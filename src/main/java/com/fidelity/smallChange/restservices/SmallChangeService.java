@@ -112,6 +112,9 @@ public class SmallChangeService {
 					user.getUsername(),
 					user.getPassword());
 			int value = accountService.registerUser(user1);
+			Preference preference = new Preference(user.getUsername(), "", 0, "", "");
+			preferenceDao.insertPreference(preference);
+
 			return value;
 		}catch (Exception e) {
 			throw new ServerErrorException("Backend issue", e);
