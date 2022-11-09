@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.smallChange.integration.mapper.SecurityMapper">
+
+	 <resultMap type="Security" id="SecurityMap">
+		<id property="stockId" column="S_ID"/>
+		<result property="stockName" column="S_NAME"/>
+		<result property="stockCode" column="S_CODE"/>
+		<result property="stockLtp" column="S_LTP"/>
+		<result property="stockAssetClass" column="S_ASSET_CLASS"/>		
+	</resultMap>
+ 
+	<select id="getSecurities" resultMap="SecurityMap">
+		SELECT * from scott.SC_STOCK_SECURITIES
+	</select>
+		
+	<insert id="insertSecurity" parameterType = "Security">
+	INSERT INTO scott.sc_stock_securities (s_id, s_name, s_code, s_ltp, s_asset_class) 
+	VALUES (#{stockId}, #{stockName}, #{stockCode},#{stockLtp},#{stockAssetClass})	
+	</insert>
+	
+	<delete id="deleteSecurity" parameterType="Integer">
+		   DELETE FROM sc_stock_securities
+           WHERE s_id = #{value}
+	</delete>
+	
+	<update id="updateSecurity" parameterType="Security">
+		UPDATE scott.sc_stock_securities
+			SET
+			    s_name = stockName,
+			    s_ltp = stockLtp,
+			    s_asset_class = stockAssetClass,
+			    s_code = stockCode
+			WHERE
+			    s_id = stockId
+	</update>
+	
+</mapper>

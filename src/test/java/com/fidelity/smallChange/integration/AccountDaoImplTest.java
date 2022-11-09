@@ -36,10 +36,8 @@ class AccountDaoImplTest {
 	
 	@Test
 	void testCheckIfClientExists() {
-		int value1 = dao.checkIfAccountExists("ABC123");
 		int value2 = dao.checkIfAccountExists("ABC001");
 		
-		assertTrue(value1 == 1);
 		assertTrue(value2 == 0);
 	}
 	

@@ -17,8 +17,8 @@
 	</select>
 		
 	<insert id="insertSecurity" parameterType = "Security">
-	INSERT INTO scott.SC_SECURITIES (s_id, s_name, s_code, s_ltp, s_asset_class) 
-	VALUES (#{stockId}, #{stockName}, #{stockCode},#{stockLtp},#{stockAssetClass})	
+	INSERT INTO SC_SECURITIES(S_ID, S_NAME, S_CODE, S_LTP, S_ASSET_CLASS) 
+	VALUES (#{sid}, #{sname}, #{scode},#{ltp},#{assetClass})	
 	</insert>
 	
 	<delete id="deleteSecurity" parameterType="Integer">
@@ -29,12 +29,12 @@
 	<update id="updateSecurity" parameterType="Security">
 		UPDATE scott.SC_SECURITIES
 			SET
-			    s_name = stockName,
-			    s_ltp = stockLtp,
-			    s_asset_class = stockAssetClass,
-			    s_code = stockCode
+			    s_name = #{sname},
+			    s_ltp = #{ltp},
+			    s_asset_class = #{assetClass},
+			    s_code = #{scode}
 			WHERE
-			    s_id = stockId
+			    s_id = #{sid
 	</update>
 	
 </mapper>
