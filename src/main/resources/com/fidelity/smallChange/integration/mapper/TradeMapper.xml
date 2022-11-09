@@ -25,7 +25,7 @@
 		from SC_TRADE t 
 		left join SC_SECURITIES s
 		on t.s_id = s.s_id
-        where t.clientId = #{clientId}
+        where t.clientId = #{clientId} order by t.trade_time desc
 	</select>
 	
 	<select id="getTradesWithFilter" parameterType="Map" resultMap="TradeMap">
