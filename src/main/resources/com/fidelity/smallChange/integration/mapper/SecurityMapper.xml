@@ -34,7 +34,7 @@
 			    s_asset_class = #{assetClass},
 			    s_code = #{scode}
 			WHERE
-			    s_id = #{sid
+			    s_id = #{sid}
 	</update>
 	
 </mapper>

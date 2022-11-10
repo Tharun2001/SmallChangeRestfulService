@@ -8,10 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +58,7 @@ import com.fidelity.smallChange.service.TradeService;
 import ch.qos.logback.classic.Logger;
 
 @RestController
+@EnableScheduling
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class SmallChangeService {
@@ -301,4 +305,17 @@ public class SmallChangeService {
 		}
 		return ResponseEntity.ok(1);
 	}
+	
+	Random randomNum = new Random();
+	
+    @Scheduled(fixedRate = 2000)
+    public void changeltp() {
+    	List<Security> securities = securityDao.getSecurities();
+    	for(Security security: securities) {
+    		double ltp = 111;
+    		int percent = -20 + randomNum.nextInt(20);
+    		security.setLtp(ltp + (ltp*percent)/100);
+    		securityDao.updateSecurity(security);
+    	}
+    }
 }
