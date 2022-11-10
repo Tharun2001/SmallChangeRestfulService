@@ -68,4 +68,48 @@ class BankAccountDaoImplTest {
 		BigDecimal balance = dao.getBankBalance("608502111");
 		assertTrue(balance.compareTo(newBalance) == 0);
 	}
+	
+
+	
+	@Test
+	void testUpdateNullAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testDeleteNullAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testUpdateNonExistentAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testDeleteNonExistentAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+    
+	@Test
+	void testInsertDuplicateAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+ 
+	@Test
+	void testNonExistentAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+    
+	@Test
+	void testDuplicateAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 }

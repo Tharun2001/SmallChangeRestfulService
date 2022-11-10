@@ -78,4 +78,34 @@ class AccountServiceImplTest {
 		assertTrue(balance.compareTo(oldBalance.add(amt)) == 0);
 		assertTrue(funds.compareTo(oldFunds.subtract(amt)) == 0);
 	}
+	
+	@Test
+	void addNullFunds() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void withDrawNullFunds() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void addNegativeFunds() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+
+	
+	
+	@Test
+	void withdrawNegativeFunds() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
 }

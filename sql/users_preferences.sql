@@ -23,7 +23,7 @@ CREATE TABLE sc_preferences (
 
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
-    VALUES ('Aryan', 'Sinha', TO_DATE('01/03/2000', 'DD/MM/YYYY'),  'aryan@smallchange.com', '+91-9999999999', 'Aryan', 'aryan'); 
+    VALUES ('Aryan', 'Sinha', TO_DATE('01/03/2000', 'DD/MM/YYYY'),  'aryan@smallchange.com', '+91-9999999999', 'Aryan', 'aryan1'); 
 
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
@@ -43,18 +43,18 @@ INSERT INTO sc_users (
 
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Aryan', 'Trading', 3, 'Middle', '3 Years');
+('Aryan', 'Trading', 1, '20,001-40,000', '7-10 years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Tharun', 'College Tuition', 3, 'Upper', '1 Year');
+('Tharun', 'College Tuition', 5, '150,000+', '10-15 years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Akilesh', 'Trading', 3, 'Middle', '5 Years');
+('Akilesh', 'New Trader', 3, '60,001-80,000', '15+ years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Akshay', 'Trading', 3, 'Upper', '2 Years');
+('Akshay', 'Learning', 2, '40,001-60,000', '0-5 years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Sandhya', 'Debt', 3, 'Middle', '7 Years');
+('Sandhya', 'Debt', 4, '0-20,000', '5-10 years');
 
 commit;

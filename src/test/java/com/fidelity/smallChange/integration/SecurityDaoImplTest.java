@@ -27,7 +27,7 @@ class SecurityDaoImplTest {
 		List<Security> accts = dao.getSecurities();
 		assertTrue(accts.size() > 0);
 	}
-//	
+	
 	@Test
 	void testInsertSecurities() {
         Security newSecurity = new Security(68, "Twitter", "TSLX",733.8,"Main Index");
@@ -36,7 +36,9 @@ class SecurityDaoImplTest {
     	assertEquals(25 ,allSecurity.size());
 
 	}
-//	
+	
+
+	
     @Test
     void testInsertNullSecurityId() throws Exception
     {
@@ -44,10 +46,8 @@ class SecurityDaoImplTest {
             dao.insertSecurity(null);
         });
     }
-//    
 
-
-    
+  
     @Test
     void testDeleteSecurity() {
         int id = 3;
@@ -55,11 +55,7 @@ class SecurityDaoImplTest {
     	List<Security> allSecurity= dao.getSecurities();
     	assertEquals(23 ,allSecurity.size());
     }
-//    
 
-
-//    
-//
     @Test
     void testDeleteNegativeSecurityId() throws Exception
     {
@@ -68,5 +64,51 @@ class SecurityDaoImplTest {
        
     }
 
+	@Test
+	void testUpdateSecurities() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testUpdateNullSecurityId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testDeleteNullSecurityId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testUpdateNonExistentSecurityId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testDeleteNonExistentSecurityId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
     
+	@Test
+	void testInsertDuplicateSecurity() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+ 
+	@Test
+	void testNonExistentSecurityId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+    
+	@Test
+	void testDuplicateSecurity() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 }

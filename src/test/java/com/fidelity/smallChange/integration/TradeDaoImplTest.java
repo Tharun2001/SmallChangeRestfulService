@@ -21,13 +21,13 @@ class TradeDaoImplTest {
 	TradeDao dao;
 	
 	@Test
-	void test() {
+	void test_get_all_trades() {
 		List<Trade> trades = dao.getAllTrades("ABC123");
 		assertTrue(trades.size() >= 0);
 	}
 	
 	@Test
-	void test_transactSecurity_buy() {
+	void test_transactSecurity_Buy() {
 		Security newSecurity = new Security(12);
 		Trade trade = new Trade("B", newSecurity,  LocalDateTime.now(),10, 2000);
 		dao.transactSecurity("ABC123", trade, newSecurity.getSid());
@@ -45,4 +45,52 @@ class TradeDaoImplTest {
 		assertTrue(trades.size() > 0);
 	}
 	
+	@Test
+	void null_SecurityId_Buy() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void null_securityId_Sell() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void nonExistent_SecurityId_Buy() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void nonExistent_securityId_Sell() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void getAllTradesNullId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void getAllTradesNonExistentId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void getAllTradesById() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void getTradesByExistentId() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 }

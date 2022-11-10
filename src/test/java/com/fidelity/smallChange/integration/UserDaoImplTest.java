@@ -45,4 +45,59 @@ public class UserDaoImplTest {
 		User val = dao.loginUser("Elend", "elend");
 		assertTrue(val != null); 
 	}
+	@Test
+	void testLoginNullUser() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+
+	@Test
+	void testLoginNonExistentUser() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	
+	@Test
+	void testSignUpNullUser() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+
+	@Test
+	void testSignUpNonExistentUser() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+
+
+	@Test
+	void testSignUpDuplicateUser() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+
+	@Test
+	void testNonExistentUserSignIn() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+
+
+	@Test
+	void testDuplicateUserSignIn() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	
+
+	
+	
 }

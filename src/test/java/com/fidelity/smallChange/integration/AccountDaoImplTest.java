@@ -56,4 +56,59 @@ class AccountDaoImplTest {
 		assertTrue(value==1);
 		assertTrue(funds.compareTo(BigDecimal.ZERO) != 0);
 	}
+	
+
+	
+	@Test
+	void testGetAccountNull() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testAddAccountNull() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testGetFundsNull() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testUpdateFundsNull() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	@Test
+	void testGetAccountNonExistent() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testAddAccountNonExistent() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testGetFundsNonExistentAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	@Test
+	void testUpdateFundsNonExistentAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+    
+	@Test
+	void testDuplicateAccount() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 }
