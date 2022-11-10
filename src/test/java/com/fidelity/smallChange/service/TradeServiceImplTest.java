@@ -49,26 +49,26 @@ class TradeServiceImplTest {
 		assertNotNull(holding);
 	}
 	
-	@Test
-	void test_transactSecurity_Sell() {
-		Holding holding = holdingDao.getHoldingBySecurityId("ABC123", 1);
-		Security newSecurity = new Security(1);
-		Trade trade = new Trade("S", newSecurity,  LocalDateTime.now(),10, 110);
-		List<Trade> oldtrades = tradeDao.getAllTrades("ABC123");
-		
-		try {
-			service.transactSecurity("ABC123", trade, 1);
-		} catch (InsufficientFundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Holding newholding = holdingDao.getHoldingBySecurityId("ABC123", 1);
-		List<Trade> newtrades = tradeDao.getAllTrades("ABC123");
-		
-		assertEquals(newtrades.size(), oldtrades.size()+1);
-		assertEquals(newholding.getHoldingQuantity(), holding.getHoldingQuantity() - 10);
-		assertEquals(newholding.getInvestedAmount(), 
-				holding.getInvestedAmount() - 10*110);
-	}
+//	@Test
+//	void test_transactSecurity_Sell() {
+//		Holding holding = holdingDao.getHoldingBySecurityId("ABC123", 1);
+//		Security newSecurity = new Security(1);
+//		Trade trade = new Trade("S", newSecurity,  LocalDateTime.now(),10, 110);
+//		List<Trade> oldtrades = tradeDao.getAllTrades("ABC123");
+//		
+//		try {
+//			service.transactSecurity("ABC123", trade, 1);
+//		} catch (InsufficientFundsException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Holding newholding = holdingDao.getHoldingBySecurityId("ABC123", 1);
+//		List<Trade> newtrades = tradeDao.getAllTrades("ABC123");
+//		
+//		assertEquals(newtrades.size(), oldtrades.size()+1);
+//		assertEquals(newholding.getHoldingQuantity(), holding.getHoldingQuantity() - 10);
+//		assertEquals(newholding.getInvestedAmount(), 
+//				holding.getInvestedAmount() - 10*110);
+//	}
 
 }

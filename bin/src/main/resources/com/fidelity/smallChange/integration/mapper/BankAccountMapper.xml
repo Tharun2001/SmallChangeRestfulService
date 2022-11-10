@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fidelity.smallChange.integration.mapper.BankAccountMapper">
+	 <resultMap type="BankAccount" id="BankAccountMap">
+		<id property="bankAccNumber" column="BANK_ACCTNUM"/>
+		<result property="acctNum" column="ACCTNUM"/>
+		<result property="bankName" column="BANK_NAME"/>
+		<result property="balance" column="BALANCE"/>
+	</resultMap>
+ 
+	<select id="getBankAccounts" resultMap="BankAccountMap">
+		SELECT ACCTNUM, BANK_ACCTNUM, BANK_NAME, BALANCE
+		FROM SC_BANKACCOUNT
+		WHERE ACCTNUM = #{value}
+	</select>
+
+	<insert id="insertBankAccount" parameterType="BankAccount">
+		INSERT INTO sc_bankaccount(acctnum, bank_acctnum, bank_name, balance) 
+		values(#{acctNum}, #{bankAccNumber}, #{bankName}, #{balance })
+	</insert>
+	
+	<update id="updateBankAccount" parameterType="BankAccount">
+		UPDATE SC_BANKACCOUNT
+		SET BANK_NAME = #{bankName}, BALANCE= #{balance }
+		WHERE BANK_ACCTNUM = #{bankAccNumber}
+	</update>
+	
+	<delete id="deleteBankAccount" parameterType="String">
+		DELETE FROM SC_BANKACCOUNT
+		WHERE BANK_ACCTNUM = #{value}
+	</delete>
+	
+</mapper>
