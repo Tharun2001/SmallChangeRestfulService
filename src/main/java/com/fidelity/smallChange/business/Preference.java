@@ -17,16 +17,19 @@ public class Preference {
 		this.lengthOfInvestment = lengthOfInvestment;
 	}
 	
+
 	@Override
 	public String toString() {
 		return "Preference [username=" + username + ", purpose=" + purpose + ", risk=" + risk + ", incomeCategory="
 				+ incomeCategory + ", lengthOfInvestment=" + lengthOfInvestment + "]";
 	}
 
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(incomeCategory, lengthOfInvestment, purpose, risk, username);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -42,6 +45,7 @@ public class Preference {
 				&& Objects.equals(purpose, other.purpose) && risk == other.risk
 				&& Objects.equals(username, other.username);
 	}
+
 
 	public void setUsername(String username) {
 		this.username = username;
