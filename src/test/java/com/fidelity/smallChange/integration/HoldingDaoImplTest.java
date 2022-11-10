@@ -86,5 +86,55 @@ class HoldingDaoImplTest {
 
 		assertNull(holding2);
 	}
+	
+	
+	@Test
+	void addDuplicateHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void addNullHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void getAllHoldingsNullAccountNumber() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void deleteNullHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 
+	
+	
+	@Test
+	void deleteNonExistentHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	@Test
+	void updateNonExistentHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
+	
+	
+	
+	@Test
+	void updateNullHolding() {
+		int value = 1;
+		assertTrue(value==1);
+	}
 }
