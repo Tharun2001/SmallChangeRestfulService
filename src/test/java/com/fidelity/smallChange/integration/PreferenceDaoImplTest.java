@@ -28,11 +28,11 @@ class PreferenceDaoImplTest {
 	
 	@Test
 	void insertPreference() {
-		User user1 = new User("Ethan", "Venture", LocalDate.now(), "elend@smallchange.com", "+91-1234567890", "Ethan", "elend");
+		User user1 = new User("John", "Venture", LocalDate.now(), "elend@smallchange.com", "+91-1234567890", "John", "John12");
 		userDao.signupUser(user1);
-		Preference preference = new Preference("Ethan", "Trading", 4, "150,000+", "5 years");
+		Preference preference = new Preference("John", "Trading", 4, "150,000+", "5 years");
 		dao.insertPreference(preference);
-		assertEquals(dao.getPreference("Ethan"), preference);
+		assertEquals(dao.getPreference("John"), preference);
 	}
 	
 	@Test

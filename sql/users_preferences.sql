@@ -1,5 +1,5 @@
-drop table sc_users;
 drop table sc_preferences;
+drop table sc_users;
 
 CREATE TABLE sc_users (
     first_name varchar(255),
@@ -39,7 +39,12 @@ INSERT INTO sc_users (
     
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
-    VALUES ('Sandhya', 'Ramesh', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'Sandhya@smallchange.com', '+91-9999999995', 'Sandhya', 'sandhya');
+    VALUES ('Sandhya', 'Ramesh', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'Sandhya@smallchange.com', '+91-9999999999', 'Sandhya', 'sandhya');
+
+INSERT INTO sc_users (
+    first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
+    VALUES ('Ethan', 'Hunt', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'ethan@smallchange.com', '+91-9999999885', 'Ethan', 'ethan123');
+
 
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
@@ -56,5 +61,8 @@ INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, 
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
 ('Sandhya', 'Debt', 4, '0-20,000', '5-10 years');
+
+INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
+('Ethan', 'Debt', 4, '0-20,000', '5-10 years');
 
 commit;

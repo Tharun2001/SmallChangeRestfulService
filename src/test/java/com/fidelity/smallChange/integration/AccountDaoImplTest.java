@@ -26,11 +26,11 @@ class AccountDaoImplTest {
 	
 	@Test
 	void testAddAccount() {
-		Account account = new Account("Tharun", "XYZ001", BigDecimal.valueOf(100000));
+		Account account = new Account("ABC", "XYZ001", BigDecimal.valueOf(100000));
 		
 		dao.createAccount(account);
 		
-		Account acc = dao.getAccount("Tharun");
+		Account acc = dao.getAccount("ABC");
 		assertNotNull(acc);
 	}
 	
