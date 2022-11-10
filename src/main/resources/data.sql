@@ -1,10 +1,15 @@
-Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Aryan','ABC123',85324);
-Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Elend','FLM504',81910);
-Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Ethan','HVL491',76586.6);
 
-Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('HVL491','1111222333','BUH bank',262114286);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Aryan','ABC123',85324);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Tharun','PLC341',85324);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Akilesh','GHT623',85324);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Akshay','YTC123',85324);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Sandhya','FLM504',81910);
+Insert into SCOTT.SC_ACCOUNT (USERNAME,CLIENTID,FUNDS) values ('Ethan','HVL491',81910);
+
 Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('ABC123','608502111','XYZ bank',1050000);
-Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('FLM504','666555444','Yes bank',2400000);
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('PLC341','718502111','XYZ bank',1050000);
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('GHT623','666555444','Yes bank',2400000);
+Insert into SCOTT.SC_BANKACCOUNT (CLIENTID,ACCOUNT_NUMBER,BANK_NAME,BALANCE) values ('HVL491','1111222333','Yes bank',2400000);
 
 
 
@@ -62,7 +67,7 @@ INSERT INTO sc_securities (s_id, s_name, s_code, s_ltp, s_asset_class) VALUES (3
 
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
-    VALUES ('Aryan', 'Sinha', TO_DATE('01/03/2000', 'DD/MM/YYYY'),  'aryan@smallchange.com', '+91-9999999999', 'Aryan', 'aryan'); 
+    VALUES ('Aryan', 'Sinha', TO_DATE('01/03/2000', 'DD/MM/YYYY'),  'aryan@smallchange.com', '+91-9999999999', 'Aryan', 'aryan1'); 
 
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
@@ -78,21 +83,27 @@ INSERT INTO sc_users (
     
 INSERT INTO sc_users (
     first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
-    VALUES ('Sandhya', 'Ramesh', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'Sandhya@smallchange.com', '+91-9999999995', 'Sandhya', 'sandhya');
+    VALUES ('Sandhya', 'Ramesh', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'Sandhya@smallchange.com', '+91-9999999999', 'Sandhya', 'sandhya');
 
-
-INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Aryan', 'Trading', 3, 'Middle', '3 Years');
-
-INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Tharun', 'College Tuition', 3, 'Upper', '1 Year');
+INSERT INTO sc_users (
+    first_name, last_name, date_of_birth, email, phone_number, username, user_password) 
+    VALUES ('Ethan', 'Hunt', TO_DATE('01/07/2000', 'DD/MM/YYYY'),  'ethan@smallchange.com', '+91-9999999885', 'Ethan', 'ethan123');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Akilesh', 'Trading', 3, 'Middle', '5 Years');
+('Aryan', 'Trading', 1, '20,001-40,000', '7-10 years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Akshay', 'Trading', 3, 'Upper', '2 Years');
+('Tharun', 'College Tuition', 5, '150,000+', '10-15 years');
 
 INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
-('Sandhya', 'Debt', 3, 'Middle', '7 Years');
+('Akilesh', 'New Trader', 3, '60,001-80,000', '15+ years');
+
+INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
+('Akshay', 'Learning', 2, '40,001-60,000', '0-5 years');
+
+INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
+('Sandhya', 'Debt', 4, '0-20,000', '5-10 years');
+
+INSERT INTO sc_preferences (username, purpose, risk_tolerance, income_category, length_of_investment) VALUES
+('Ethan', 'Debt', 4, '0-20,000', '5-10 years');
   
